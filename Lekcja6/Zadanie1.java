@@ -1,35 +1,26 @@
-import java.util.ArrayList;
-import java.util.List;
-
-public class Zadanie8 {
+public class Zadanie7 {
     public static void main(String[] args) {
-        List<String> students = new ArrayList<>();
-        students.add("Jan Kowalski");
-        students.add("Anna Nowak");
-        students.add("Piotr Zieliński");
-        students.add("Kasia Wiśniewska");
-        students.add("Zofia Lewandowska");
+        int[] numbers = {1, 2, 3, 4, 5};
 
-        printList(students);
-        removeStudentByIndex(students, 2);
-        printList(students);
+        printArray(numbers);
+        System.out.println("Sum: " + calculateSum(numbers));
 
-        students.add("Michał Wójcik");
-        students.add("Agnieszka Majewska");
-        printList(students);
+        numbers[1] = 10;
+        printArray(numbers);
     }
 
-    public static void printList(List<String> list) {
-        for (String name : list) {
-            System.out.println(name);
+    public static void printArray(int[] array) {
+        for (int num : array) {
+            System.out.print(num + " ");
         }
+        System.out.println();
     }
 
-    public static void removeStudentByIndex(List<String> list, int index) {
-        if (index >= 0 && index < list.size()) {
-            list.remove(index);
-        } else {
-            System.out.println("Invalid index!");
+    public static int calculateSum(int[] array) {
+        int sum = 0;
+        for (int num : array) {
+            sum += num;
         }
+        return sum;
     }
 }

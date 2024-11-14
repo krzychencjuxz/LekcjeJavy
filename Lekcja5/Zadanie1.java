@@ -1,43 +1,59 @@
-class Student {
-    private String name;
-    private double grade;
+class BankAccount {
+    private String accountNumber;
+    private double balance;
+    private String accountHolderName;
 
-    public Student(String name, double grade) {
-        this.name = name;
-        this.grade = grade;
+    public BankAccount(String accountNumber, String accountHolderName, double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = initialBalance;
     }
 
-    public String getName() {
-        return name;
+    public String getAccountNumber() {
+        return accountNumber;
     }
 
-    public double getGrade() {
-        return grade;
-    }
-}
-
-class School {
-    private List<Student> students = new ArrayList<>();
-
-    public void addStudent(Student student) {
-        students.add(student);
+    public String getAccountHolderName() {
+        return accountHolderName;
     }
 
-    protected double calculateAverageGrade() {
-        double sum = 0;
-        for (Student student : students) {
-            sum += student.getGrade();
+    public double getBalance() {
+        return balance;
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
         }
-        return students.size() > 0 ? sum / students.size() : 0;
+    }
+
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+        } else {
+            System.out.println("Insufficient funds!");
+        }
+    }
+
+    public void displayBalance() {
+        System.out.println("Balance: " + balance);
+        if (balance < 100) {
+            System.out.println("Low Balance!");
+        }
     }
 }
 
-public class Zadanie6 {
+public class Zadanie5 {
     public static void main(String[] args) {
-        School school = new School();
-        school.addStudent(new Student("Jan Kowalski", 4.0));
-        school.addStudent(new Student("Anna Nowak", 5.0));
+        BankAccount account1 = new BankAccount("123456", "Jan Kowalski", 150.0);
+        BankAccount account2 = new BankAccount("654321", "Anna Nowak", 50.0);
 
-        System.out.println("Average grade: " + school.calculateAverageGrade());
+        account1.deposit(50);
+        account1.withdraw(30);
+        account1.displayBalance();
+
+        account2.deposit(100);
+        account2.withdraw(200); // Should print error message
+        account2.displayBalance();
     }
 }
